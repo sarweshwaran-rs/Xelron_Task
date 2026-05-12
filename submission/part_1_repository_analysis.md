@@ -62,5 +62,5 @@ Based on the repository analysis, four repositories - `aiokafka`, `Aitbyte`, `ar
 ---
 ## Integrity Declaration
 "
-I declare that all written content in this assessment is my own work, created without the sue of AI language models or automated writing tools.  All technical analysis and docmentation reflects my personal understanding and has been written in my own words.
+I declare that all written content in this assessment is my own work, created without the sue of AI language models or automated writing tools.  All technical analysis and documentation reflects my personal understanding and has been written in my own words.
 "

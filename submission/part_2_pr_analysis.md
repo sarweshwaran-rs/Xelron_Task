@@ -19,7 +19,7 @@ The purpose of this analysis is to demonstrate technical comprehension of the se
 
 - Repository Chosen: [Aiokafka](https://www.github.com/aio-libs/aiokafka)
 - Pull Request (PR) ID: #143
-- PR Link: https://wwww.github.com/aio-libs/aiokafka/pull/143
+- PR Link: https://www.github.com/aio-libs/aiokafka/pull/143
 - PR Type: Feature Enhancement / Improving the Metadata handling of Consumer Object
 - Total Files Changed: 5
 - Total Commits Made: 2
@@ -27,13 +27,13 @@ The purpose of this analysis is to demonstrate technical comprehension of the se
 ---
 
 ### Problem Statement
-In the previous implementation of the aiokafka's consumer, metadata updates were mainly handle through the Kafka's group coordinator when a `group_id` was provided. However, `consumers` operating without a consumer group (`group_id=None`) did not properly recieve the additional information when it is changed metadata when new kafka topics are send by producer which matching a subscription pattern were created.  
+In the previous implementation of the aiokafka's consumer, metadata updates were mainly handle through the Kafka's group coordinator when a `group_id` was provided. However, `consumers` operating without a consumer group (`group_id=None`) did not properly receive the additional information when it is changed metadata when new kafka topics are send by producer which matching a subscription pattern were created.  
     Because of this limitation in the previous version, consumers were using 
 pattern-based topic subscriptions without a group ID could fail to detect newl created topics in a dynamic manner.  This created the inconsistent consumer behavior and reduced flexibility for applications depending on automatic topic discovery in asynchronous Kafka enviornments.  The issue particularly affected standalone consumers that relied on pattern subscriptions instead of fixed topic subscriptions.
 ---
 ### PR Summary
 The pull request 143 improves the handling behavior of the metadata of `aiokafka consumers` when the `group_id` parameter is set to  `None`.  The PR introduces a metadata change listener mechanism that allows standalone consumers using pattern-based subscription to detect newly created kafka topics dynamically.
-The implementation adds a dedicated `NoGroupCoordinator` component to the consumer class `consumer.py` which is responsible for monitoring metadata updates independently from the normal kafka group coordination workflow.  Previously, metadata updates were tightly coupled with consumer group management, which prevented standalne consuers from receiving proper topic change notifications.
+The implementation adds a dedicated `NoGroupCoordinator` component to the consumer class `consumer.py` which is responsible for monitoring metadata updates independently from the normal kafka group coordination workflow.  Previously, metadata updates were tightly coupled with consumer group management, which prevented standalone consuers from receiving proper topic change notifications.
 The updated implementation ensures that the consumers without a group ID can still react to metadata changes and automatically subscribe to newly created topics matching the configured subscription pattern.  This enhancement to metadata improves the flexibility and  consistency for asynchronous kafka consumers operating outside traditional consumer groups.
 ---
 ## Technical Changes
@@ -67,7 +67,7 @@ To solve this issue, the pull request introduces a separate `NoGroupCoordinator`
 The PR also introduces new test cases validating that consumers correctly detect newly created topics while using  pattern-based subscriptions without participating in consumer groups.  This improves reliability and ensures consistent behavior for standalone asynchronous consumers.
 ---
 ### Potentital Impact
-This PR primarily affecs asynchronous Kafka consumers using pattern-based topic subscriptions without consuer group partification.  Applications relying on standalone consumers may experience improve topic discovery and reliable metadata synchronization.  These changes improve the flexibility of `aiokafka` consumers by allowing dynamic detection of otpic even when `group_id=None`.  This enhancement benefits real-time steaming systems for notification and other systems, monitoring applications, and lightweight Kafka consumer services operating indepently from traditional Kafka consumer groups.
+This PR primarily affects asynchronous Kafka consumers using pattern-based topic subscriptions without consuer group partification.  Applications relying on standalone consumers may experience improve topic discovery and reliable metadata synchronization.  These changes improve the flexibility of `aiokafka` consumers by allowing dynamic detection of otpic even when `group_id=None`.  This enhancement benefits real-time steaming systems for notification and other systems, monitoring applications, and lightweight Kafka consumer services operating indepently from traditional Kafka consumer groups.
 ---
 ## Supporting Repository References
 
@@ -99,7 +99,7 @@ This PR primarily affecs asynchronous Kafka consumers using pattern-based topic 
 
 - Repository Chosen: [Aiokafka](https://www.github.com/aio-libs/aiokafka)
 - Pull Request (PR) ID: #193
-- PR Link: https://wwww.github.com/aio-libs/aiokafka/pull/193
+- PR Link: https://www.github.com/aio-libs/aiokafka/pull/193
 - PR Type: Feature Enhancement/ Consumer Offset Management API Improvement
 - Total Files Changed: 5
 - Total Commits Made: 2
@@ -163,7 +163,7 @@ The enhancement particularly benefits:
 - Consumer debugging environments.
 - Applications requring flexible offset control.
 
-The newly introduced APIs improves the maintability and reduces the implementation complexity for `asynchronous Kafka` consumer applications.
+The newly introduced APIs improves the maintainability and reduces the implementation complexity for `asynchronous Kafka` consumer applications.
 ---
 
 ## Supporting Repository References
