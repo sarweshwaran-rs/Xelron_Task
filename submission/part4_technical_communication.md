@@ -1,7 +1,7 @@
 ### Part 4 Technical Communication
 
 ## Objective
-The objective of this section is to explain the rationale behind the selecting PR #143 from the `aiokafka` repository and demonstrate technical understanding of the implementation, aniticipated challenges in this, and problem-solving approach related to the selected PR.
+The objective of this section is to explain the rationale behind the selecting PR #143 from the `aiokafka` repository and demonstrate technical understanding of the implementation, anticipated challenges in this, and problem-solving approach related to the selected PR.
 
 This response focuses on:
 - The reason for selecting the pull request.
@@ -38,7 +38,7 @@ While analyzing this I also reviewed:
 - Files changes,
 - Test cases.
 
-To understand how the new metadata listener mechanism integrates with the existing consumer workflow, I have some understanding on the asynchronos workflows, product-consumer architecture, event-driven systems which helpe me to understand the architectural changes introduced by the PR.
+To understand how the new metadata listener mechanism integrates with the existing consumer workflow, I have some understanding on the asynchronos workflows, producer-consumer architecture, event-driven systems which helpe me to understand the architectural changes introduced by the PR.
 
 3. Potential Implementation Challenges:
 One of the major challenges which I faced with the anticipate during implementation is maintaining synchronization between metadaa updates and the active asynchronous consumer operations. The Kafka consumers were continuously fetch the messages asynchronously while the Metadata refreshes automatically in the background.  If the Metadata updates happen during active message consumption, there is a possibility of:
@@ -47,7 +47,7 @@ One of the major challenges which I faced with the anticipate during implementat
 - duplicate topic assignment,
 - delayed topic refresh synchronization.
 Another Challenge I faced is handling is rapid Kafka topic creation events.  If multiple matching topics which are created quickly by the producers which should be automatically consumed by consumers by the automatic subcription to it, by the metadata listener must refresh subscription properly without missing topics or interrupting active consumers.
-Error Handling is another very tough challenge I faced, in which the Temporary Kafka broker failures during metadata refeshes the operations could interrupt the synchronization workflows if not handled correctly.  Additionally, preserving the compatibility with existing Kafka consumer group coordination behavior while the introducing the standalone coordination logic may increase implementation complexity.
+Error Handling is another very tough challenge I faced, in which the Temporary Kafka broker failures during metadata refreshes the operations could interrupt the synchronization workflows if not handled correctly.  Additionally, preserving the compatibility with existing Kafka consumer group coordination behavior while the introducing the standalone coordination logic may increase implementation complexity.
 
 4. Problem-Solving Approach:
 To overcome the mentioned challenges, I would first completley analyze the repository carefully with the existing implementation of the asynchronous consumer workflow and I understand how the metadata synchronization is currently interacts with the fetch operations and the partition assignments.
